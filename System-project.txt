@@ -1,0 +1,98 @@
+drop table admins;
+create table admins(
+                   userid varchar(20),
+                   pass varchar(20) not null,
+                   institute varchar(50) not null,
+                    email varchar(35),
+                    name varchar(30),
+                    contact_no varchar(15),
+                    address varchar(100),
+                       primary key (userid));
+
+
+create table teachers(
+                   userid varchar(20),
+                   pass varchar(20),
+                   admin_id varchar(20),
+                   email varchar(35),
+                   name varchar(30) not null,
+                   institute varchar(50)not null,
+                    contact_no varchar(15) not null,
+                    address varchar(100) not null,
+                    primary key (userid),
+                    foreign key(admin_id) references admins(userid) on update cascade on delete cascade
+                     );
+
+create table students(
+                   userid varchar(20),
+                   pass varchar(20),
+                   admin_id varchar(20),
+                   email varchar(35),
+                   name varchar(30) not null,
+                   institute varchar(50) not null,
+                    contact_no varchar(15) not null,
+                    address varchar(100) not null,
+                    primary key (userid),
+                    foreign key(admin_id) references admins(userid) on update cascade on delete cascade
+                     );
+
+create table courses(
+                    id int(11) auto_increment,
+                    courseno varchar(20),
+                    coursetitle varchar(50),
+                    admin_id varchar(20),
+                    unique(courseno,admin_id),
+                    primary key(id),
+                    foreign key(admin_id) references admins(userid) on update cascade on delete cascade
+                     );
+
+create table assign_teacher(
+                    courseno varchar(20),
+                    teacherid varchar(20),
+                    admin_id varchar(20),
+                    unique(courseno,teacherid),
+                    foreign key(teacherid) references teachers(userid) on update cascade on delete cascade
+                     );
+
+create table assign_student(
+                    courseno varchar(20),
+                    studentid varchar(20),
+                    admin_id varchar(20),
+                    unique(courseno,studentid),
+                    foreign key(studentid) references students(userid) on update cascade on delete cascade
+                     );
+
+drop table attendance;
+create table attendance(
+                        day date not null,
+                        studentid varchar(20) not null,
+                         courseno varchar(20) not null,
+                        teacherid varchar(20),
+                        present int(11),
+                        admin_id varchar(20) not null,
+                        primary key(day,studentid,courseno)
+                        );
+
+CREATE TABLE assignment(
+    id int AUTO_INCREMENT PRIMARY KEY,
+    studentid varchar(20),
+    teacherid varchar(20),
+    courseno varchar(20),
+    name    varchar(100),
+    file    varchar(250),
+    FOREIGN KEY (studentid) REFERENCES students(userid),
+    FOREIGN KEY (teacherid) REFERENCES teachers(userid),
+    FOREIGN key (courseno) REFERENCES courses(courseno)
+);
+
+CREATE TABLE give_assignment(
+    id int AUTO_INCREMENT PRIMARY KEY,
+    teacherid varchar(20),
+    studentid varchar(20),
+    courseno varchar(20),
+    topic	varchar(250),
+    check	int,
+    FOREIGN KEY (teacherid) REFERENCES teachers(userid),
+    FOREIGN KEY (studentid) REFERENCES students(userid),
+    FOREIGN KEY (courseno)	REFERENCES courses(courseno)
+);
