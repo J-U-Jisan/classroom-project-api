@@ -21,7 +21,7 @@ $give_assignment = new Give_assignment($db);
  
 // set ID property of product to be edited
 $give_assignment->id = $_POST['id'];
-$give_assignment->check = $_POST['check'];
+$give_assignment->given = $_POST['given'];
  
 // update the product
 if($give_assignment->update()){

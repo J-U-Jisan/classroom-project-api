@@ -86,13 +86,14 @@ CREATE TABLE assignment(
 );
 
 CREATE TABLE give_assignment(
-    id int AUTO_INCREMENT PRIMARY KEY,
-    teacherid varchar(20),
-    studentid varchar(20),
-    courseno varchar(20),
+    id int(11) AUTO_INCREMENT PRIMARY KEY,
+    teacherid   varchar(20),
+    studentid   varchar(20),
+    courseno    varchar(20),
     topic	varchar(250),
-    check	int,
-    FOREIGN KEY (teacherid) REFERENCES teachers(userid),
-    FOREIGN KEY (studentid) REFERENCES students(userid),
-    FOREIGN KEY (courseno)	REFERENCES courses(courseno)
+    given	int(11),
+    deadline    date,
+    FOREIGN KEY (teacherid) REFERENCES teachers(userid) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (studentid) REFERENCES students(userid) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (courseno)  REFERENCES courses(courseno) ON DELETE CASCADE ON UPDATE CASCADE
 );

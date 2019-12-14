@@ -3,12 +3,11 @@ class Give_assignment{
 	private $conn;
 	private $table_name = "give_assignment";
 
-    public $id;
     public $teacherid;
     public $studentid;
 	public $courseno;
     public $topic;
-    public $check;
+    public $given;
     public $deadline;
 
 	public function __construct($db){
@@ -17,7 +16,7 @@ class Give_assignment{
 
     function read(){
     	$query = "SELECT
-                	p.id, p.teacherid, p.studentid, p.courseno, p.topic, p.check, p.deadline 
+                	p.id, p.teacherid, p.studentid, p.courseno, p.topic, p.given, p.deadline 
                     FROM " . $this->table_name . " p";
 
     	$stmt = $this->conn->prepare($query); 
@@ -27,21 +26,20 @@ class Give_assignment{
     	return $stmt;
     }
 
-     function create(){
+    function create(){
         // query to insert record
-        $query = "INSERT INTO " . $this->table_name . " 
-                SET
-                    teacherid=:teacherid, studentid=:studentid, courseno=:courseno, topic=:topic, check=:check, deadline=:deadline;";
+        $query = "INSERT INTO " . $this->table_name . " SET
+                    teacherid=:teacherid, studentid=:studentid, courseno=:courseno, topic=:topic, given=:given, deadline=:deadline ;";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
-     
-        // sanitize
+        
+        // sanitize 
         $this->teacherid=htmlspecialchars(strip_tags($this->teacherid));
         $this->studentid=htmlspecialchars(strip_tags($this->studentid));
         $this->courseno=htmlspecialchars(strip_tags($this->courseno));
         $this->topic=htmlspecialchars(strip_tags($this->topic));
-        $this->check=htmlspecialchars(strip_tags($this->check));
+        $this->given=htmlspecialchars(strip_tags($this->given));
         $this->deadline=htmlspecialchars(strip_tags($this->deadline));
      
         // bind values
@@ -49,8 +47,9 @@ class Give_assignment{
         $stmt->bindParam(":studentid", $this->studentid);
         $stmt->bindParam(":courseno", $this->courseno);
         $stmt->bindParam(":topic", $this->topic);
-        $stmt->bindParam(":check", $this->check);
-        $stmt->bindParam(":deadline",$this->deadline);
+        $stmt->bindParam(":given", $this->given);
+        $stmt->bindParam(":deadline", $this->deadline);
+        
         // execute query
         if($stmt->execute()){
             return true;
@@ -58,11 +57,12 @@ class Give_assignment{
         return false;
          
     }
+
     function update(){
      
         // update query
         $query = "UPDATE " . $this->table_name . " SET
-                    check = :check
+                    given = :given
                     
                 WHERE
                     id = :id";
@@ -71,11 +71,11 @@ class Give_assignment{
         $stmt = $this->conn->prepare($query);
      
         // sanitize
-        $this->check=htmlspecialchars(strip_tags($this->check));
+        $this->given=htmlspecialchars(strip_tags($this->given));
         $this->id=htmlspecialchars(strip_tags($this->id));
 
         // bind new values
-        $stmt->bindParam(":check", $this->check);
+        $stmt->bindParam(":given", $this->given);
         $stmt->bindParam(":id", $this->id);
         // execute the query
         if($stmt->execute()){

@@ -23,10 +23,10 @@
     $give_assignment->studentid = $_POST['studentid'];
     $give_assignment->courseno = $_POST['courseno'];
     $give_assignment->topic = $_POST['topic'];
-    $give_assignment->check = $_POST['check'];
+    $give_assignment->given = $_POST['given'];
     $give_assignment->deadline = $_POST['deadline'];
     
- 
+    //$query = "INSERT INTO give_assignment(id,teacherid,studentid,courseno,topic,given)"
     // create the product
     if($give_assignment->create()){
  

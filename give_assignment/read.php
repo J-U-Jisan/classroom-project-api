@@ -40,7 +40,7 @@ if($num>0){
             "studentid" => $studentid,
             "courseno" => $courseno,
             "topic" => $topic,
-            "check" => $check,
+            "given" => $given,
             "deadline" => $deadline
         );
  
