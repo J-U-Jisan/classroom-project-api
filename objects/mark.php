@@ -8,6 +8,7 @@ class Mark{
 	public $courseno;
     public $topic;
 	public $mark;
+    public $outof;
 
 	public function __construct($db){
         $this->conn = $db;
@@ -15,7 +16,7 @@ class Mark{
 
     function read(){
     	$query = "SELECT 
-    				p.id, p.teacherid, p.studentid, p.courseno, p.topic, p.mark
+    				p.id, p.teacherid, p.studentid, p.courseno, p.topic, p.mark, p.outof
     			FROM " . $this->table_name . " p ORDER BY studentid;";
 
     	$stmt = $this->conn->prepare($query); 
@@ -29,7 +30,7 @@ class Mark{
         // query to insert record
         $query = "INSERT INTO " . $this->table_name . " 
                 SET
-                    teacherid=:teacherid, studentid=:studentid, courseno=:courseno, topic=:topic, mark=:mark;";
+                    teacherid=:teacherid, studentid=:studentid, courseno=:courseno, topic=:topic, mark=:mark, outof=:outof;";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -40,6 +41,7 @@ class Mark{
         $this->courseno=htmlspecialchars(strip_tags($this->courseno));
         $this->topic=htmlspecialchars(strip_tags($this->topic));
         $this->mark=htmlspecialchars(strip_tags($this->mark));
+        $this->outof = htmlspecialchars(strip_tags($this->outof));
      
         // bind values
         $stmt->bindParam(":teacherid", $this->teacherid);
@@ -47,7 +49,7 @@ class Mark{
         $stmt->bindParam(":courseno", $this->courseno);
         $stmt->bindParam(":topic", $this->topic);
         $stmt->bindParam(":mark", $this->mark);
-        
+        $stmt->bindParam(":outof", $this->outof);
         // execute query
         if($stmt->execute()){
             return true;

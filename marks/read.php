@@ -40,7 +40,8 @@ if($num>0){
             "studentid" => $studentid,
             "courseno" => $courseno,
             "topic" => $topic,
-            "mark" => $mark
+            "mark" => $mark,
+            "outof" => $outof
         );
  
         array_push($marks_arr["records"], $marks_list);

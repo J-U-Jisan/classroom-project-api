@@ -24,8 +24,8 @@
     $marks->teacherid = $_POST['teacherid'];
     $marks->topic = $_POST['topic'];
     $marks->mark = $_POST['mark'];
+    $marks->outof = $_POST['outof'];
     
- 
     // create the product
     if($marks->create()){
  

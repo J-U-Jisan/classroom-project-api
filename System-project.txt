@@ -132,6 +132,7 @@ CREATE TABLE marks(
     courseno  varchar(20),
     topic     varchar(200),
     mark      int,
+    outof     int,
     FOREIGN KEY (teacherid) REFERENCES teachers(userid) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (studentid) REFERENCES students(userid) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (courseno)  REFERENCES courses(courseno) ON UPDATE CASCADE ON DELETE CASCADE
