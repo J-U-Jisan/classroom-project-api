@@ -7,7 +7,7 @@ create table admins(
                     name varchar(30),
                     contact_no varchar(15),
                     address varchar(100),
-                       primary key (userid));
+                    primary key (userid));
 
 
 create table teachers(
@@ -80,6 +80,7 @@ CREATE TABLE assignment(
     courseno varchar(20),
     name    varchar(100),
     file    varchar(250),
+    drive   varchar(250),	
     FOREIGN KEY (studentid) REFERENCES students(userid),
     FOREIGN KEY (teacherid) REFERENCES teachers(userid),
     FOREIGN key (courseno) REFERENCES courses(courseno)
@@ -97,3 +98,41 @@ CREATE TABLE give_assignment(
     FOREIGN KEY (studentid) REFERENCES students(userid) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (courseno)  REFERENCES courses(courseno) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE project(
+    id int(11) AUTO_INCREMENT PRIMARY KEY,
+    teacherid   varchar(20),
+    studentid   varchar(20),
+    courseno    varchar(20),
+    topic	varchar(250),
+    given	int(11),
+    deadline    date,
+    FOREIGN KEY (teacherid) REFERENCES teachers(userid) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (studentid) REFERENCES students(userid) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (courseno)  REFERENCES courses(courseno) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE give_project(
+    id int AUTO_INCREMENT PRIMARY KEY,
+    studentid varchar(20),
+    teacherid varchar(20),
+    courseno varchar(20),
+    name    varchar(100),
+    file    varchar(250),
+    drive   varchar(250),	
+    FOREIGN KEY (studentid) REFERENCES students(userid),
+    FOREIGN KEY (teacherid) REFERENCES teachers(userid),
+    FOREIGN key (courseno) REFERENCES courses(courseno)
+);
+
+CREATE TABLE marks(
+    id       int AUTO_INCREMENT PRIMARY KEY,
+    teacherid varchar(20),
+    studentid varchar(20),
+    courseno  varchar(20),
+    topic     varchar(200),
+    mark      int,
+    FOREIGN KEY (teacherid) REFERENCES teachers(userid) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (studentid) REFERENCES students(userid) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (courseno)  REFERENCES courses(courseno) ON UPDATE CASCADE ON DELETE CASCADE
+)

@@ -1,23 +1,22 @@
 <?php
-class Give_assignment{
+class Mark{
 	private $conn;
-	private $table_name = "give_assignment";
+	private $table_name = "marks";
 
     public $teacherid;
     public $studentid;
 	public $courseno;
     public $topic;
-    public $given;
-    public $deadline;
+	public $mark;
 
 	public function __construct($db){
         $this->conn = $db;
     }
 
     function read(){
-    	$query = "SELECT
-                	p.id, p.teacherid, p.studentid, p.courseno, p.topic, p.given, p.deadline 
-                    FROM " . $this->table_name . " p ORDER BY p.studentid;";
+    	$query = "SELECT 
+    				p.id, p.teacherid, p.studentid, p.courseno, p.topic, p.mark
+    			FROM " . $this->table_name . " p ORDER BY studentid;";
 
     	$stmt = $this->conn->prepare($query); 
     	
@@ -26,29 +25,28 @@ class Give_assignment{
     	return $stmt;
     }
 
-    function create(){
+     function create(){
         // query to insert record
-        $query = "INSERT INTO " . $this->table_name . " SET
-                    teacherid=:teacherid, studentid=:studentid, courseno=:courseno, topic=:topic, given=:given, deadline=:deadline ;";
+        $query = "INSERT INTO " . $this->table_name . " 
+                SET
+                    teacherid=:teacherid, studentid=:studentid, courseno=:courseno, topic=:topic, mark=:mark;";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
-        
-        // sanitize 
+     
+        // sanitize
         $this->teacherid=htmlspecialchars(strip_tags($this->teacherid));
         $this->studentid=htmlspecialchars(strip_tags($this->studentid));
         $this->courseno=htmlspecialchars(strip_tags($this->courseno));
         $this->topic=htmlspecialchars(strip_tags($this->topic));
-        $this->given=htmlspecialchars(strip_tags($this->given));
-        $this->deadline=htmlspecialchars(strip_tags($this->deadline));
+        $this->mark=htmlspecialchars(strip_tags($this->mark));
      
         // bind values
         $stmt->bindParam(":teacherid", $this->teacherid);
         $stmt->bindParam(":studentid", $this->studentid);
         $stmt->bindParam(":courseno", $this->courseno);
         $stmt->bindParam(":topic", $this->topic);
-        $stmt->bindParam(":given", $this->given);
-        $stmt->bindParam(":deadline", $this->deadline);
+        $stmt->bindParam(":mark", $this->mark);
         
         // execute query
         if($stmt->execute()){
@@ -57,12 +55,11 @@ class Give_assignment{
         return false;
          
     }
-
     function update(){
      
         // update query
         $query = "UPDATE " . $this->table_name . " SET
-                    given = :given
+                    mark = :mark
                     
                 WHERE
                     id = :id";
@@ -71,12 +68,14 @@ class Give_assignment{
         $stmt = $this->conn->prepare($query);
      
         // sanitize
-        $this->given=htmlspecialchars(strip_tags($this->given));
         $this->id=htmlspecialchars(strip_tags($this->id));
-
+        $this->mark=htmlspecialchars(strip_tags($this->mark));
+     
         // bind new values
-        $stmt->bindParam(":given", $this->given);
+       
         $stmt->bindParam(":id", $this->id);
+        $stmt->bindParam(":mark", $this->mark);
+     
         // execute the query
         if($stmt->execute()){
             return true;

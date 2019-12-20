@@ -1,7 +1,7 @@
 <?php
-class Give_assignment{
+class Project{
 	private $conn;
-	private $table_name = "give_assignment";
+	private $table_name = "project";
 
     public $teacherid;
     public $studentid;

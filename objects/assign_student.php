@@ -14,7 +14,7 @@ class Assign_student{
     function read(){
         $query = "SELECT 
                     p.courseno, p.studentid, p.admin_id
-                FROM " . $this->table_name . " p";
+                FROM " . $this->table_name . " p ORDER BY p.studentid;";
 
         $stmt = $this->conn->prepare($query); 
         

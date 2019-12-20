@@ -12,8 +12,8 @@
 	$pwd="";
 	$db="api";
 
-    $upload_path = './image/';
-    $upload_url = 'http://127.0.0.1/apipro/image/';
+    $upload_path = './project_file/';
+    $upload_url = 'http://127.0.0.1/apipro/project_file/';
     $response = array();
 
     if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -47,7 +47,7 @@
     			$status = copy($tempfilename, $file_path);
                 unlink($tempfilename);
 
-    			$sql = "INSERT INTO `assignment` (`studentid`,`teacherid`,`courseno`,`name`,`file`) VALUES(
+    			$sql = "INSERT INTO `give_project` (`studentid`,`teacherid`,`courseno`,`name`,`file`) VALUES(
     			'$studentid','$teacherid','$courseno','$name','$file_url');";
     			if(mysqli_query($con,$sql))
     			{
