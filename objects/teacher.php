@@ -63,5 +63,29 @@ class Teacher{
         return false;
          
     }
+    function delete(){
+ 
+    // delete query
+    $query = "DELETE FROM " . $this->table_name . " WHERE userid =:userid && admin_id =:admin_id;";
+ 
+    // prepare query
+    $stmt = $this->conn->prepare($query);
+ 
+    // sanitize
+    $this->userid=htmlspecialchars(strip_tags($this->userid));
+    $this->admin_id=htmlspecialchars(strip_tags($this->admin_id));
+ 
+    // bind id of record to delete
+    $stmt->bindParam(":userid", $this->userid);
+    $stmt->bindParam(":admin_id", $this->admin_id);
+ 
+    // execute query
+    if($stmt->execute()){
+        return true;
+    }
+ 
+    return false;
+     
+    }
 }
 ?>

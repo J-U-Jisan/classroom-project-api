@@ -62,16 +62,19 @@ create table assign_student(
                     foreign key(studentid) references students(userid) on update cascade on delete cascade
                      );
 
-drop table attendance;
 create table attendance(
-                        day date not null,
-                        studentid varchar(20) not null,
-                         courseno varchar(20) not null,
-                        teacherid varchar(20),
-                        present int(11),
-                        admin_id varchar(20) not null,
-                        primary key(day,studentid,courseno)
-                        );
+     day date not null,
+     studentid varchar(20) not null,
+     courseno varchar(20) not null,
+     teacherid varchar(20),
+     present int(11),
+     admin_id varchar(20) not null,
+     primary key(day,studentid,courseno),
+     FOREIGN KEY (studentid) REFERENCES students(userid) ON UPDATE CASCADE ON DELETE CASCADE,
+     FOREIGN KEY (courseno) REFERENCES courses(courseno) ON UPDATE CASCADE ON DELETE CASCADE,
+     FOREIGN KEY (teacherid) REFERENCES teachers(userid) ON UPDATE CASCADE ON DELETE CASCADE,
+     FOREIGN KEY (admin_id) REFERENCES admins(userid) ON UPDATE CASCADE ON DELETE CASCADE
+);
 
 CREATE TABLE assignment(
     id int AUTO_INCREMENT PRIMARY KEY,

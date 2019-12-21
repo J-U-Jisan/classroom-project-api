@@ -49,5 +49,31 @@ class Assign_teacher{
         return false;
          
     }
+
+    function delete(){
+ 
+    // delete query
+    $query = "DELETE FROM " . $this->table_name . " WHERE courseno =:courseno && admin_id =:admin_id && teacherid =:teacherid;";
+ 
+    // prepare query
+    $stmt = $this->conn->prepare($query);
+ 
+    // sanitize
+    $this->courseno=htmlspecialchars(strip_tags($this->courseno));
+    $this->admin_id=htmlspecialchars(strip_tags($this->admin_id));
+    $this->teacherid = htmlspecialchars(strip_tags($this->teacherid));
+
+    // bind id of record to delete
+    $stmt->bindParam(":courseno", $this->courseno);
+    $stmt->bindParam(":admin_id", $this->admin_id);
+    $stmt->bindParam(":teacherid", $this->teacherid);
+    // execute query
+    if($stmt->execute()){
+        return true;
+    }
+ 
+    return false;
+     
+    }
 }
 ?>
