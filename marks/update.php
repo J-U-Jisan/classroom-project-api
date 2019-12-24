@@ -30,7 +30,7 @@ if($marks->update()){
     http_response_code(200);
  
     // tell the user
-    echo json_encode(array("message" => "Updated."));
+    echo json_encode( "Updated.");
 }
  
 // if unable to update the product, tell the user
@@ -40,6 +40,6 @@ else{
     http_response_code(503);
  
     // tell the user
-    echo json_encode(array("message" => "Unable to update."));
+    echo json_encode("Unable to update.");
 }
 ?>

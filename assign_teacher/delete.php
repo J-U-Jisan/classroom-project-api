@@ -28,7 +28,7 @@ if($assign_teacher->delete()){
     http_response_code(200);
  
     // tell the user
-    echo json_encode(array("message" => "Successful"));
+    echo json_encode("Successful");
 }
 // if unable to delete the product
 else{
@@ -37,6 +37,6 @@ else{
     http_response_code(503);
  
     // tell the user
-    echo json_encode(array("message" => "failed"));
+    echo json_encode("Failed");
 }
 ?>

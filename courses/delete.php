@@ -27,7 +27,7 @@ if($course->delete()){
     http_response_code(200);
  
     // tell the user
-    echo json_encode(array("message" => "Course  deleted."));
+    echo json_encode("Course  deleted.");
 }
  
 // if unable to delete the product
@@ -37,6 +37,6 @@ else{
     http_response_code(503);
  
     // tell the user
-    echo json_encode(array("message" => "Unable to delete course."));
+    echo json_encode("Unable to delete course.");
 }
 ?>

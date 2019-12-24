@@ -31,7 +31,7 @@
         http_response_code(201);
  
         // tell the user
-        echo json_encode("Registration Successful");
+        echo json_encode("Admit Student in Course Successful");
     }
  
     // if unable to create the product, tell the user
@@ -40,7 +40,7 @@
         http_response_code(503);
  
         // tell the user
-        echo json_encode(array("message" => "Unable to create account."));
+        echo json_encode("Admit Student in Course Failed");
     }
 
 ?>

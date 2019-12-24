@@ -44,7 +44,7 @@
         http_response_code(503);
  
         // tell the user
-        echo json_encode(array("message" => "Unable to create account."));
+        echo json_encode("Registration Failed");
     }
 
 ?>
