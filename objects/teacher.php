@@ -30,9 +30,7 @@ class Teacher{
 
      function create(){
         // query to insert record
-        $query = "INSERT INTO " . $this->table_name . "
-                SET
-                    userid=:userid, pass=:pass, admin_id=:admin_id, institute=:institute, email=:email, name=:name, contact_no=:contact_no, address=:address;";
+        $query = "INSERT INTO  $this->table_name VALUES ($this->userid,$this->pass,$this->admin_id,$this->email,$this->name,$this->institute,$this->contact_no,$this->address);";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
