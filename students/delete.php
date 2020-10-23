@@ -21,13 +21,14 @@ $student = new Student($db);
 $student->userid = $_POST['userid'];
 $student->admin_id = $_POST['admin_id']; 
 // delete the product
+
 if($student->delete()){
  
     // set response code - 200 ok
     http_response_code(200);
  
     // tell the user
-    echo json_encode("Student Account Deleted."));
+    echo json_encode("Student Account Deleted.");
 }
  
 // if unable to delete the product
