@@ -39,6 +39,7 @@ class Admin{
                 SET
                     userid=:userid, pass=:pass, institute=:institute, email=:email, name=:name, contact_no=:contact_no, address=:address;";
 
+        echo $this->userid . ' ' . $this->pass;
         // prepare query
         $stmt = $this->conn->prepare($query);
      
