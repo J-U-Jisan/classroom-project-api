@@ -7,7 +7,7 @@
     header("Access-Control-Allow-Methods: POST");
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-    header("Authorization: Basic cce326abfc384ef5a674f11e5587ede1");
+    header("Authorization: cce326abfc384ef5a674f11e5587ede1");
     // get database connection
     include_once '../config/database.php';
      
