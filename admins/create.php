@@ -6,7 +6,7 @@
     header("Access-Control-Allow-Methods: POST");
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-     
+    header("X-HTTP-Method-Override: PATCH");
     // get database connection
     include_once '../config/database.php';
      
@@ -21,7 +21,7 @@
     // set product property values
     $admin->userid = $_POST['userid'];
     $admin->pass = $_POST['password'];
-    //$con_pass = $_POST['confirm']
+    //$con_pass = $_POST['confirm'];
     $admin->email = $_POST['email'];
     $admin->institute = $_POST['institute'];
     $admin->name = $_POST['name'];

@@ -26,6 +26,7 @@ class Teacher{
     	$stmt->execute();
 
     	return $stmt;
+
     }
 
      function create(){
