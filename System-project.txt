@@ -1,4 +1,4 @@
-drop table admins;
+
 create table admins(
                    userid varchar(20),
                    pass varchar(20) not null,
@@ -139,4 +139,17 @@ CREATE TABLE marks(
     FOREIGN KEY (teacherid) REFERENCES teachers(userid) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (studentid) REFERENCES students(userid) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (courseno)  REFERENCES courses(courseno) ON UPDATE CASCADE ON DELETE CASCADE
-)
+);
+
+CREATE TABLE routine(
+	id int AUTO_INCREMENT PRIMARY KEY,
+	teacherid varchar(20),
+    	courseno  varchar(20),
+	admin_id  varchar(20),
+	day       varchar(20),
+	start_time varchar(20),
+	end_time varchar(20),
+	FOREIGN KEY (teacherid) REFERENCES teachers(userid) ON UPDATE CASCADE ON DELETE CASCADE,
+    	FOREIGN KEY (courseno)  REFERENCES courses(courseno) ON UPDATE CASCADE ON DELETE CASCADE,
+	foreign key(admin_id) references admins(userid) on update cascade on delete cascade   	
+);

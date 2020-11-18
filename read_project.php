@@ -8,7 +8,7 @@
 	$host = "localhost";
 	$username="root";
 	$pwd="";
-	$db="api";
+	$db="classroom_api";
 	$conn = mysqli_connect($host,$username,$pwd,$db);
 
 	if ($conn->connect_error) {

@@ -10,7 +10,7 @@
 	$host = "localhost";
 	$username="root";
 	$pwd="";
-	$db="api";
+	$db="classroom_api";
 
     $upload_path = './image/';
     $upload_url = 'http://127.0.0.1/apipro/image/';

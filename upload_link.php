@@ -8,7 +8,7 @@
 	$host = "localhost";
 	$username="root";
 	$pwd="";
-	$db="api";
+	$db="classroom_api";
 
 	$response = array();
 	if($_SERVER['REQUEST_METHOD']=='POST'){
